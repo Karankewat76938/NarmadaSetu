@@ -10,6 +10,22 @@ REGISTER USER
 ============================
 */
 router.post('/register', async (req, res) => {
+  // ✅ Offline Mock Check
+  if (!global.dbConnected) {
+    const { name, email, role } = req.body;
+    const mockUser = {
+      id: "mock_user_" + Math.random().toString(36).substring(2, 9),
+      name: name || "Mock User",
+      role: role || "tourist"
+    };
+    const token = jwt.sign(
+      { user: { id: mockUser.id, role: mockUser.role } },
+      process.env.JWT_SECRET || 'supersecretjwtkeynarmadasetu',
+      { expiresIn: '7d' }
+    );
+    return res.json({ token, user: mockUser });
+  }
+
   try {
     const { name, email, password, role } = req.body;
 
@@ -76,6 +92,29 @@ LOGIN USER
 ============================
 */
 router.post('/login', async (req, res) => {
+  // ✅ Offline Mock Check
+  if (!global.dbConnected) {
+    const { email } = req.body;
+    const emailPrefix = email ? email.split('@')[0] : 'tourist';
+    // Deduce role from email for convenience (e.g. provider@test.com)
+    let role = 'tourist';
+    if (email.includes('provider')) role = 'provider';
+    else if (email.includes('rider')) role = 'rider';
+    else if (email.includes('admin')) role = 'admin';
+
+    const mockUser = {
+      id: "mock_user_123",
+      name: emailPrefix.charAt(0).toUpperCase() + emailPrefix.slice(1),
+      role
+    };
+    const token = jwt.sign(
+      { user: { id: mockUser.id, role: mockUser.role } },
+      process.env.JWT_SECRET || 'supersecretjwtkeynarmadasetu',
+      { expiresIn: '7d' }
+    );
+    return res.json({ token, user: mockUser });
+  }
+
   try {
     const { email, password } = req.body;
 

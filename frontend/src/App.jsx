@@ -15,6 +15,12 @@ import TouristDashboard from './pages/TouristDashboard';
 import ProviderDashboard from './pages/ProviderDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import RiderDashboard from './pages/RiderDashboard';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Partner from './pages/Partner';
+import FAQ from './pages/FAQ';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 function App() {
   return (
@@ -36,6 +42,12 @@ function App() {
             <Route path="/provider" element={<ProviderDashboard />} />
             <Route path="/rider" element={<RiderDashboard />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/partner" element={<Partner />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </main>
         <Footer />

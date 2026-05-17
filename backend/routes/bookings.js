@@ -5,6 +5,24 @@ const auth = require('../middleware/auth');
 const Booking = require('../models/Booking');
 const Service = require('../models/Service');
 
+// High-fidelity Mock Bookings for Offline/Local Testing
+const MOCK_BOOKINGS = [
+  {
+    _id: "booking_1",
+    date: new Date(Date.now() + 86400000 * 2), // 2 days later
+    totalAmount: 800,
+    status: "confirmed",
+    tourist: "mock_user_123",
+    service: {
+      _id: "service_1",
+      title: "Sunrise Private Boat Ride to Marble Rocks",
+      location: "Bhedaghat, Jabalpur",
+      price: 800
+    },
+    createdAt: new Date()
+  }
+];
+
 /*
 ====================================
 CREATE BOOKING
@@ -12,6 +30,31 @@ Tourist Only
 ====================================
 */
 router.post('/', auth, async (req, res) => {
+  // ✅ Offline Mock Check
+  if (!global.dbConnected) {
+    const { serviceId, date, totalAmount } = req.body;
+    const booking = {
+      _id: "booking_" + Math.random().toString(36).substring(2, 9),
+      tourist: req.user ? req.user.id : "mock_user_123",
+      service: {
+        _id: serviceId || "service_1",
+        title: "Sunset Shared Boat Ride",
+        location: "Bhedaghat, Jabalpur",
+        price: Number(totalAmount) || 500
+      },
+      date: date || new Date(),
+      totalAmount: Number(totalAmount) || 500,
+      status: 'pending',
+      createdAt: new Date()
+    };
+    MOCK_BOOKINGS.unshift(booking);
+    return res.status(201).json({
+      success: true,
+      message: 'Booking created successfully (Offline Mock)',
+      data: booking
+    });
+  }
+
   try {
 
     // Role Check
@@ -76,6 +119,15 @@ Tourist / Provider
 ====================================
 */
 router.get('/', auth, async (req, res) => {
+  // ✅ Offline Mock Check
+  if (!global.dbConnected) {
+    return res.status(200).json({
+      success: true,
+      count: MOCK_BOOKINGS.length,
+      data: MOCK_BOOKINGS
+    });
+  }
+
   try {
 
     let bookings = [];

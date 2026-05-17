@@ -35,7 +35,7 @@ const Navbar = () => {
             <Link to="/explore" className="nav-link">Explore</Link>
             <Link to="/services" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Services</Link>
             <Link to="/community" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Community</Link>
-            <a href="#about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>About</a>
+            <Link to="/about" className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
             
             <div className="nav-actions">

@@ -23,6 +23,7 @@ import niru from './niru.jpeg';
 import raja from './raja.jpeg';
 import stay from './stay.jpeg';
 import sunsetview from './sunsetview.jpg';
+import logo from './logo.png';
 
 export {
   durgesh,
@@ -49,5 +50,6 @@ export {
   niru,
   raja,
   stay,
-  sunsetview
+  sunsetview,
+  logo
 };
