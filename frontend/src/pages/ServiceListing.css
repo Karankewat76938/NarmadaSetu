@@ -1,0 +1,218 @@
+.marketplace-page {
+  padding-top: 80px; /* Offset for global navbar */
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* Top Bar */
+.marketplace-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 24px 0 24px;
+}
+
+.mp-search-bar {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.mp-search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--dark);
+}
+
+.mp-search-bar input:focus {
+  outline: none;
+}
+
+.mp-topbar-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--dark);
+  transition: all 0.2s ease;
+}
+
+.btn-filter-mp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--dark);
+  transition: all 0.2s ease;
+}
+
+.lang-toggle:hover, .btn-filter-mp:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* Category Circles (Zomato Style) */
+.mp-categories-section {
+  padding: 32px 0;
+  background: white;
+  margin-top: 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.category-circles-scroll {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 8px 16px;
+}
+
+.category-circles-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.category-circle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-width: max-content;
+}
+
+.category-img-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 3px solid transparent;
+}
+
+.category-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.1);
+  transition: background 0.3s;
+}
+
+.category-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #475569;
+  transition: color 0.2s;
+}
+
+/* Hover and Active states */
+.category-circle-wrapper:hover .category-img-container {
+  transform: scale(1.05);
+}
+
+.category-circle-wrapper:hover .category-img-container img {
+  transform: scale(1.1);
+}
+
+.category-circle-wrapper.active .category-img-container {
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+.category-circle-wrapper.active .category-overlay {
+  background: rgba(0,0,0,0);
+}
+
+.category-circle-wrapper.active .category-name {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Main Grid Content */
+.mp-main-content {
+  padding: 40px 24px 80px 24px;
+}
+
+.mp-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.mp-grid-header h2 {
+  font-size: 1.5rem;
+  color: var(--dark);
+}
+
+.mp-count {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.marketplace-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 64px 0;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .marketplace-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .mp-search-bar {
+    max-width: 100%;
+  }
+  
+  .hide-mobile {
+    display: none;
+  }
+  
+  .category-img-container {
+    width: 64px;
+    height: 64px;
+  }
+}

@@ -1,0 +1,51 @@
+.listing-detail-page {
+  padding-top: 100px; /* Offset for sticky navbar */
+  padding-bottom: 80px;
+}
+
+.listing-detail-header {
+  margin-bottom: 24px;
+}
+
+.listing-detail-header h1 {
+  font-size: 2rem;
+  color: var(--dark);
+}
+
+.listing-content-wrapper {
+  display: flex;
+  gap: 80px;
+  margin-top: 48px;
+}
+
+.listing-main-column {
+  flex: 1;
+  min-width: 0; /* Prevents overflow */
+}
+
+.listing-sidebar-column {
+  width: 33.333%;
+  position: relative;
+}
+
+.detail-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 48px 0;
+}
+
+@media (max-width: 992px) {
+  .listing-content-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .listing-sidebar-column {
+    width: 100%;
+  }
+  
+  .detail-divider {
+    margin: 32px 0;
+  }
+}

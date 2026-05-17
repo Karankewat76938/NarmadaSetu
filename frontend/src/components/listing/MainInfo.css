@@ -1,0 +1,57 @@
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.title-row h2 {
+  font-size: 1.5rem;
+  color: var(--dark);
+}
+
+.host-avatar-small {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.feature-icon {
+  color: var(--dark);
+  flex-shrink: 0;
+}
+
+.feature-text h4 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.feature-text p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.description-section h3 {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+}
+
+.description-text {
+  color: var(--dark);
+  line-height: 1.7;
+  font-size: 1rem;
+}
