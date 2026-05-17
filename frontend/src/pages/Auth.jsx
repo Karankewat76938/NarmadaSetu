@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Globe, Mail, Lock, Phone, ArrowRight } from 'lucide-react';
+import { google, github } from '../assets/Images';
 import './Auth.css';
 
 const ROLES = [
@@ -97,11 +98,11 @@ const Auth = () => {
           {/* Social Login */}
           <div className="social-login-group">
             <button className="btn-social google">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" />
+              <img src={google} alt="Google" />
               {t('Google', 'गूगल')}
             </button>
             <button className="btn-social github">
-              <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Github" />
+              <img src={github} alt="Github" />
               {t('Github', 'गिटहब')}
             </button>
           </div>

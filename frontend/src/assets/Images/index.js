@@ -24,6 +24,8 @@ import raja from './raja.jpeg';
 import stay from './stay.jpeg';
 import sunsetview from './sunsetview.jpg';
 import logo from './logo.png';
+import google from './google.svg';
+import github from './github.svg';
 
 export {
   durgesh,
@@ -51,5 +53,7 @@ export {
   raja,
   stay,
   sunsetview,
-  logo
+  logo,
+  google,
+  github
 };
