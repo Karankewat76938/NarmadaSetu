@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ShieldAlert, MapPin, Navigation, BadgeCheck, PhoneCall, AlertTriangle, LifeBuoy, Info } from 'lucide-react';
 import './SafetyDashboard.css';
+import { kewat } from '../assets/Images';
 
 const SafetyDashboard = () => {
   const [sosActive, setSosActive] = useState(false);
@@ -72,7 +73,7 @@ const SafetyDashboard = () => {
             Assigned Provider
           </h2>
           <div className="rider-verification">
-            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80" alt="Rider" className="rider-avatar" />
+            <img src={kewat} alt="Rider" className="rider-avatar" />
             <div className="rider-info">
               <h3>Ramesh Kewat <BadgeCheck size={16} color="#10b981" /></h3>
               <p style={{ margin: 0, fontSize: '0.85rem', color: '#475569' }}>Boat: MP-20-NB-4592</p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, CalendarClock, MoreHorizontal } from 'lucide-react';
 import './UpcomingBookings.css';
+import { maheshwarghat } from '../../assets/Images';
 
 const UPCOMING = [
   {
@@ -10,7 +11,7 @@ const UPCOMING = [
     time: '06:00 AM',
     location: 'Ghat No. 4, Bhedaghat',
     host: 'Ramesh Kewat',
-    image: 'https://images.unsplash.com/photo-1541823709867-1b206113eafd?w=200&q=80',
+    image: maheshwarghat,
     status: 'Confirmed'
   }
 ];

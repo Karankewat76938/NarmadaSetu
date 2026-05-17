@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Clock, Flame, Heart, Info, CheckCircle2 } from 'lucide-react';
 import './AartiBooking.css';
+import { shivam } from '../assets/Images';
 
 const MOCK_AARTIS = [
   { id: 1, title: 'Narmada Maha Aarti', type: 'Evening', time: '06:30 PM', spots: 12, price: 500, desc: 'Special VIP seating on the floating platform during the grand evening Aarti.' },
@@ -94,7 +95,7 @@ const AartiBooking = () => {
           {/* Priest Profile */}
           <div className="priest-profile">
             <div className="priest-header">
-              <img src="https://images.unsplash.com/photo-1555696958-c5049b866f6f?w=200&q=80" alt="Head Priest" className="priest-img" />
+              <img src={shivam} alt="Head Priest" className="priest-img" />
               <div>
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', color: 'var(--maroon)' }}>Pt. Shivam Tiwari</h3>
                 <p style={{ color: 'var(--saffron)', fontWeight: 500, fontSize: '0.9rem' }}>Head Organizer, Narmada Samiti</p>

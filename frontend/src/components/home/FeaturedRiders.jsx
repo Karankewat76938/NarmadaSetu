@@ -1,6 +1,7 @@
 import React from 'react';
 import { Star, ShieldCheck } from 'lucide-react';
 import './FeaturedRiders.css';
+import { kewat, lucky, balram } from '../../assets/Images';
 
 const riders = [
   {
@@ -9,7 +10,7 @@ const riders = [
     experience: '15+ Years',
     rating: 4.9,
     reviews: 124,
-    image: 'https://images.unsplash.com/photo-1541823709867-1b206113eafd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: kewat,
     specialty: 'Sunrise Photography Rides'
   },
   {
@@ -18,7 +19,7 @@ const riders = [
     experience: '8+ Years',
     rating: 4.8,
     reviews: 89,
-    image: 'https://images.unsplash.com/photo-1506869640319-fea1a2753c10?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: lucky,
     specialty: 'Aarti Darshan Expert'
   },
   {
@@ -27,7 +28,7 @@ const riders = [
     experience: '20+ Years',
     rating: 5.0,
     reviews: 210,
-    image: 'https://images.unsplash.com/photo-1555696958-c5049b866f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: balram,
     specialty: 'Parikrama Guide'
   }
 ];

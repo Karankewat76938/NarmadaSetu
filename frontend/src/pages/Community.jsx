@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { Heart, Users, TrendingUp, Anchor } from 'lucide-react';
 import './Community.css';
+import { 
+  kewat, niru, balram, maheshwarghat, eveningAarti, stay, boat, food 
+} from '../assets/Images';
 
 const Community = () => {
   useEffect(() => {
@@ -52,7 +55,7 @@ const Community = () => {
 
           <div className="stories-grid">
             <div className="story-card">
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80" alt="Ramesh" className="story-img" />
+              <img src={kewat} alt="Ramesh" className="story-img" />
               <div className="story-content">
                 <div className="story-quote">
                   <p>"Before this platform, we relied heavily on middlemen who took a large cut of our earnings. Now, tourists book us directly. I can finally afford to send my daughter to a better school."</p>
@@ -67,7 +70,7 @@ const Community = () => {
             </div>
 
             <div className="story-card">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80" alt="Anjali" className="story-img" />
+              <img src={niru} alt="Anjali" className="story-img" />
               <div className="story-content">
                 <div className="story-quote">
                   <p>"Opening our home to tourists has been a blessing. Not only do we share our local cuisine, but we also share our culture. Narmada Setu gave us the dignity of running our own small business."</p>
@@ -82,7 +85,7 @@ const Community = () => {
             </div>
 
             <div className="story-card">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" alt="Suresh" className="story-img" />
+              <img src={balram} alt="Suresh" className="story-img" />
               <div className="story-content">
                 <div className="story-quote">
                   <p>"I know every story carved into the marble rocks. This platform helps me connect with people who truly want to understand the spiritual history of the Narmada, not just take a quick photo."</p>
@@ -107,19 +110,19 @@ const Community = () => {
           </div>
           <div className="masonry-grid">
             <div className="gallery-item large">
-              <img src="https://images.unsplash.com/photo-1541823709867-1b206113eafd?w=800&q=80" alt="River" />
+              <img src={maheshwarghat} alt="River" />
             </div>
             <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1587310574169-7c30a08e1fcd?w=400&q=80" alt="Aarti" />
+              <img src={eveningAarti} alt="Aarti" />
             </div>
             <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=80" alt="Homestay" />
+              <img src={stay} alt="Homestay" />
             </div>
             <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1506869640319-fea1a2753c10?w=400&q=80" alt="Boat" />
+              <img src={boat} alt="Boat" />
             </div>
             <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80" alt="Food" />
+              <img src={food} alt="Food" />
             </div>
           </div>
         </div>

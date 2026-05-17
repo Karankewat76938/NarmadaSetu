@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Plus, Image as ImageIcon, Edit2, Trash2 } from 'lucide-react';
+import { maheshwarghat, eveningAarti } from '../../assets/Images';
 
 const MOCK_SERVICES = [
-  { id: 1, title: 'Sunrise Marble Rocks Tour', category: 'Boat Ride', price: '₹800/boat', image: 'https://images.unsplash.com/photo-1541823709867-1b206113eafd?w=200&q=80', active: true },
-  { id: 2, title: 'VIP Maha Aarti Boat', category: 'Aarti', price: '₹500/seat', image: 'https://images.unsplash.com/photo-1587310574169-7c30a08e1fcd?w=200&q=80', active: true }
+  { id: 1, title: 'Sunrise Marble Rocks Tour', category: 'Boat Ride', price: '₹800/boat', image: maheshwarghat, active: true },
+  { id: 2, title: 'VIP Maha Aarti Boat', category: 'Aarti', price: '₹500/seat', image: eveningAarti, active: true }
 ];
 
 const ProviderListings = () => {

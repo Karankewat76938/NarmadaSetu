@@ -5,7 +5,7 @@
 .aarti-container {
   max-width: 1280px;
   margin: 0 auto;
-  background: url('https://images.unsplash.com/photo-1587310574169-7c30a08e1fcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  background: url('../../assets/Images/Evening-Aarti.webp') center/cover no-repeat;
   border-radius: 32px;
   overflow: hidden;
   position: relative;

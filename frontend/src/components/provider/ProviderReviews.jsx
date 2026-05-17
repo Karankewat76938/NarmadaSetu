@@ -1,9 +1,10 @@
 import React from 'react';
 import { Star, MessageCircleReply } from 'lucide-react';
+import { durgesh, niru } from '../../assets/Images';
 
 const MOCK_REVIEWS = [
-  { id: 1, user: 'Amit Patel', rating: 5, date: 'Oct 22, 2026', service: 'Sunrise Marble Rocks Tour', comment: 'Amazing experience! Ramesh was very polite and knew all the perfect spots for photos.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80' },
-  { id: 2, user: 'Sneha Rao', rating: 4, date: 'Oct 20, 2026', service: 'VIP Maha Aarti Boat', comment: 'Great view for the Aarti. The boat was clean. Deducted one star because we started 10 minutes late.', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80' },
+  { id: 1, user: 'Amit Patel', rating: 5, date: 'Oct 22, 2026', service: 'Sunrise Marble Rocks Tour', comment: 'Amazing experience! Ramesh was very polite and knew all the perfect spots for photos.', avatar: durgesh },
+  { id: 2, user: 'Sneha Rao', rating: 4, date: 'Oct 20, 2026', service: 'VIP Maha Aarti Boat', comment: 'Great view for the Aarti. The boat was clean. Deducted one star because we started 10 minutes late.', avatar: niru },
 ];
 
 const ProviderReviews = () => {

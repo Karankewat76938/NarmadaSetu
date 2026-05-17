@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart, Star } from 'lucide-react';
 import './FavoriteServices.css';
+import { eveningAarti, stay } from '../../assets/Images';
 
 const FAVORITES = [
   {
@@ -8,14 +9,14 @@ const FAVORITES = [
     title: 'VIP Maha Aarti Boat',
     rating: 5.0,
     price: 500,
-    image: 'https://images.unsplash.com/photo-1587310574169-7c30a08e1fcd?w=300&q=80'
+    image: eveningAarti
   },
   {
     id: 2,
     title: 'Narmada View Heritage Stay',
     rating: 4.8,
     price: 2500,
-    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=300&q=80'
+    image: stay
   }
 ];
 

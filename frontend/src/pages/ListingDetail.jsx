@@ -8,6 +8,9 @@ import BookingCard from '../components/listing/BookingCard';
 import PickupMap from '../components/listing/PickupMap';
 import ReviewsSection from '../components/listing/ReviewsSection';
 import './ListingDetail.css';
+import { 
+  maheshwarghat, sunsetview, stay, home, boat, kewat
+} from '../assets/Images';
 
 // Mock detailed data
 const MOCK_LISTING = {
@@ -21,16 +24,16 @@ const MOCK_LISTING = {
   duration: '1 Hour',
   boatType: 'Traditional Row Boat',
   images: [
-    'https://images.unsplash.com/photo-1541823709867-1b206113eafd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1506869640319-fea1a2753c10?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-    'https://images.unsplash.com/photo-1502672260266-1c1de2d9d0cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-    'https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+    maheshwarghat,
+    sunsetview,
+    stay,
+    home,
+    boat
   ],
   rider: {
     name: 'Ramesh Kewat',
     experience: '15+ Years',
-    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+    avatar: kewat,
     languages: ['Hindi', 'Local Dialect', 'Basic English'],
     description: "I've been rowing these waters since I was a boy. I know every marble rock formation and their stories.",
     joined: '2010'

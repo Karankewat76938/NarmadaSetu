@@ -1,6 +1,7 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
 import './Testimonials.css';
+import { love, raja, niru } from '../../assets/Images';
 
 const testimonials = [
   {
@@ -8,21 +9,21 @@ const testimonials = [
     text: "The boat ride at Bhedaghat was magical. Our guide, Ramesh, explained the history of the marble rocks beautifully. Booking through Narmada Setu was so easy!",
     author: "Priya Sharma",
     location: "Mumbai",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+    image: love
   },
   {
     id: 2,
     text: "Witnessing the Narmada Aarti from the middle of the river on a private boat is an experience I will never forget. Highly recommend the verified services here.",
     author: "Rahul Verma",
     location: "Delhi",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+    image: raja
   },
   {
     id: 3,
     text: "Safe, secure, and incredibly authentic. I love that the money goes directly to the local Kewat community. It makes the journey even more meaningful.",
     author: "Anita Desai",
     location: "Pune",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+    image: niru
   }
 ];
 

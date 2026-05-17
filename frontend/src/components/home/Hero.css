@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   padding-top: 80px;
-  background: url('https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+  background: url('../../assets/Images/maheshwarghat.png') center/cover no-repeat;
 }
 
 .hero-overlay {

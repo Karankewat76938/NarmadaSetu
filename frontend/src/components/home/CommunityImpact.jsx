@@ -1,12 +1,13 @@
 import React from 'react';
 import './CommunityImpact.css';
+import { boatrider } from '../../assets/Images';
 
 const CommunityImpact = () => {
   return (
     <section className="impact-section">
       <div className="container impact-grid">
         <div className="impact-image-wrapper">
-          <img src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Community Impact" className="impact-img" />
+          <img src={boatrider} alt="Community Impact" className="impact-img" />
           <div className="impact-stat-card glass">
             <h3>₹2M+</h3>
             <p>Income Generated</p>

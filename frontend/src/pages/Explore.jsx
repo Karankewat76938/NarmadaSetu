@@ -4,6 +4,9 @@ import CategoryTabs from '../components/explore/CategoryTabs';
 import ListingCard from '../components/explore/ListingCard';
 import MapArea from '../components/explore/MapArea';
 import './Explore.css';
+import { 
+  sunsetview, boat, stay, home, eveningAarti, guide, food, boatrider
+} from '../assets/Images';
 
 // Mock Data
 const MOCK_LISTINGS = [
@@ -17,8 +20,8 @@ const MOCK_LISTINGS = [
     price: 800,
     badge: 'Popular',
     images: [
-      'https://images.unsplash.com/photo-1541823709867-1b206113eafd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1506869640319-fea1a2753c10?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+      sunsetview,
+      boat
     ]
   },
   {
@@ -31,8 +34,8 @@ const MOCK_LISTINGS = [
     price: 2500,
     badge: 'Rare Find',
     images: [
-      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1502672260266-1c1de2d9d0cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+      stay,
+      home
     ]
   },
   {
@@ -44,7 +47,7 @@ const MOCK_LISTINGS = [
     rating: 5.0,
     price: 500,
     images: [
-      'https://images.unsplash.com/photo-1587310574169-7c30a08e1fcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+      eveningAarti
     ]
   },
   {
@@ -57,7 +60,7 @@ const MOCK_LISTINGS = [
     price: 1500,
     badge: 'Certified',
     images: [
-      'https://images.unsplash.com/photo-1555696958-c5049b866f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+      guide
     ]
   },
   {
@@ -69,7 +72,7 @@ const MOCK_LISTINGS = [
     rating: 4.6,
     price: 300,
     images: [
-      'https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+      food
     ]
   },
   {
@@ -81,7 +84,7 @@ const MOCK_LISTINGS = [
     rating: 4.5,
     price: 100,
     images: [
-      'https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+      boatrider
     ]
   }
 ];
