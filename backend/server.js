@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,44 +7,84 @@ const path = require('path');
 
 const app = express();
 
-// Middleware
-app.use(cors());
+/* ======================
+   MIDDLEWARE
+====================== */
+
+// CORS configuration
+app.use(cors({
+  origin: '*', // change to frontend URL in production
+  credentials: true
+}));
+
 app.use(express.json());
 
-// API Routes
+/* ======================
+   HEALTH CHECK (Render)
+====================== */
+app.get('/health', (req, res) => {
+  res.status(200).send('Server Healthy ✅');
+});
+
+/* ======================
+   API ROUTES
+====================== */
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/services', require('./routes/services'));
 app.use('/api/bookings', require('./routes/bookings'));
 
-// Production Setup
+/* ======================
+   PRODUCTION FRONTEND
+====================== */
 if (process.env.NODE_ENV === 'production') {
 
-  app.use(express.static(
-    path.join(__dirname, '../frontend/dist')
-  ));
+  const frontendPath = path.join(__dirname, '../frontend/dist');
 
-  // SPA fallback
-  app.use((req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, '../frontend/dist/index.html')
-    );
+  app.use(express.static(frontendPath));
+
+  // React SPA fallback (IMPORTANT FIX)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(frontendPath, 'index.html'));
   });
 
 } else {
 
   app.get('/', (req, res) => {
-    res.send('Narmada Setu API running...');
+    res.send('🚀 Narmada Setu API running in development mode');
   });
 
 }
 
+/* ======================
+   GLOBAL ERROR HANDLER
+====================== */
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    message: 'Internal Server Error'
+  });
+});
+
+/* ======================
+   DATABASE + SERVER START
+====================== */
+
 const PORT = process.env.PORT || 5000;
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(() => console.log('MongoDB connection error'));
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
 
-app.listen(PORT, () =>
-  console.log(`Server started on port ${PORT}`)
-);
+    console.log('✅ MongoDB Connected');
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+
+  } catch (error) {
+    console.error('❌ MongoDB Connection Failed');
+    process.exit(1);
+  }
+};
+
+startServer();
