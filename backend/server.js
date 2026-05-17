@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(frontendPath));
 
   // React SPA fallback (IMPORTANT FIX)
-  app.get('*', (req, res) => {
+  app.use((req, res) => {
     res.sendFile(path.join(frontendPath, 'index.html'));
   });
 
