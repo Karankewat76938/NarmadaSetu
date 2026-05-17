@@ -1,16 +1,16 @@
 import React from 'react';
 import { Star, ShieldCheck } from 'lucide-react';
 import './FeaturedRiders.css';
-import { kewat, lucky, balram } from '../../assets/Images';
+import { lucky, balram, arvin } from '../../assets/Images';
 
 const riders = [
   {
     id: 1,
-    name: 'Ramesh Kewat',
+    name: 'Arvin Kewat',
     experience: '15+ Years',
     rating: 4.9,
     reviews: 124,
-    image: kewat,
+    image: arvin,
     specialty: 'Sunrise Photography Rides'
   },
   {
@@ -24,7 +24,7 @@ const riders = [
   },
   {
     id: 3,
-    name: 'Suresh Tiwari',
+    name: 'Manoj kewat',
     experience: '20+ Years',
     rating: 5.0,
     reviews: 210,
@@ -39,7 +39,7 @@ const FeaturedRiders = () => {
       <div className="container">
         <h2 className="section-title">Featured Local Heroes</h2>
         <p className="section-subtitle">Meet our top-rated, verified boat riders and guides who make your Narmada journey unforgettable.</p>
-        
+
         <div className="riders-grid">
           {riders.map(rider => (
             <div key={rider.id} className="rider-card">
@@ -52,7 +52,7 @@ const FeaturedRiders = () => {
               <div className="rider-info">
                 <h3>{rider.name}</h3>
                 <p className="rider-specialty">{rider.specialty}</p>
-                
+
                 <div className="rider-stats">
                   <div className="stat">
                     <span className="stat-value">{rider.experience}</span>
@@ -64,7 +64,7 @@ const FeaturedRiders = () => {
                     <span className="stat-label">{rider.reviews} Reviews</span>
                   </div>
                 </div>
-                
+
                 <button className="btn btn-secondary w-100 mt-4">View Profile</button>
               </div>
             </div>

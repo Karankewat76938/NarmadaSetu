@@ -7,8 +7,8 @@ const testimonials = [
   {
     id: 1,
     text: "The boat ride at Bhedaghat was magical. Our guide, Ramesh, explained the history of the marble rocks beautifully. Booking through Narmada Setu was so easy!",
-    author: "Priya Sharma",
-    location: "Mumbai",
+    author: "Love kewat",
+    location: "Maheshwar",
     image: love
   },
   {
@@ -21,8 +21,8 @@ const testimonials = [
   {
     id: 3,
     text: "Safe, secure, and incredibly authentic. I love that the money goes directly to the local Kewat community. It makes the journey even more meaningful.",
-    author: "Anita Desai",
-    location: "Pune",
+    author: "Niraj kewat",
+    location: "Behgaav",
     image: niru
   }
 ];
@@ -33,7 +33,7 @@ const Testimonials = () => {
       <div className="container">
         <h2 className="section-title">Pilgrim Stories</h2>
         <p className="section-subtitle">Read what our tourists and pilgrims have to say about their Narmada experiences.</p>
-        
+
         <div className="testimonials-grid">
           {testimonials.map(t => (
             <div key={t.id} className="testimonial-card glass">
