@@ -28,17 +28,21 @@ const RiderSidebar = ({ activeTab, setActiveTab }) => {
       
       <nav className="sidebar-nav">
         <ul>
-          {navItems.map(item => (
-            <li key={item.id}>
-              <button
-                className={`nav-btn ${activeTab === item.id ? 'active' : ''}`}
-                onClick={() => setActiveTab(item.id)}
-              >
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </button>
-            </li>
-          ))}
+          {navItems.map(item => {
+            // Fix: Assign the component reference to a Capitalized variable name
+            const IconComponent = item.icon;
+            return (
+              <li key={item.id}>
+                <button
+                  className={`nav-btn ${activeTab === item.id ? 'active' : ''}`}
+                  onClick={() => setActiveTab(item.id)}
+                >
+                  <IconComponent size={20} />
+                  <span>{item.label}</span>
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
