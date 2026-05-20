@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Globe, Mail, Lock, Phone, ArrowRight } from 'lucide-react';
+import { Globe, Mail, Lock, Phone, ArrowRight, User } from 'lucide-react';
 import { google, github } from '../assets/Images';
+import { useAuth } from '../context/AuthContext';
 import './Auth.css';
 
 const ROLES = [
@@ -12,36 +13,75 @@ const ROLES = [
 ];
 
 const Auth = () => {
+  const [isLoginView, setIsLoginView] = useState(true);
   const [activeRole, setActiveRole] = useState('tourist');
   const [isHindi, setIsHindi] = useState(false);
   const [loginMethod, setLoginMethod] = useState('email'); // 'email' or 'otp'
   
   // Form State
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [errorAnimation, setErrorAnimation] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  
   const navigate = useNavigate();
+  const { login, register } = useAuth();
 
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg('');
     
-    // Simple validation trigger
-    if (loginMethod === 'email' && (!email || !password)) {
-      triggerError();
-      return;
+    if (isLoginView) {
+      // Simple validation trigger
+      if (loginMethod === 'email' && (!email || !password)) {
+        triggerError();
+        return;
+      }
+      if (loginMethod === 'otp' && !phone) {
+        triggerError();
+        return;
+      }
+      
+      const loginIdentifier = loginMethod === 'email' ? email : `${phone.replace(/\s+/g, '')}@otp.com`;
+      const loginSecret = loginMethod === 'email' ? password : 'otp_bypass_password';
+
+      try {
+        const result = await login(loginIdentifier, loginSecret, activeRole);
+        if (result.success && result.user) {
+          console.log(`Logging in as ${result.user.role}`);
+          if (result.user.role === 'rider') navigate('/rider');
+          else if (result.user.role === 'provider') navigate('/provider');
+          else if (result.user.role === 'admin') navigate('/admin');
+          else navigate('/dashboard');
+        }
+      } catch (err) {
+        triggerError();
+        setErrorMsg(err.message || 'Login failed');
+      }
+    } else {
+      // Register Flow
+      if (!name || !email || !password) {
+        triggerError();
+        setErrorMsg('All fields are required');
+        return;
+      }
+
+      try {
+        const result = await register(name, email, password, activeRole);
+        if (result.success && result.user) {
+          console.log(`Registered and logged in as ${result.user.role}`);
+          if (result.user.role === 'rider') navigate('/rider');
+          else if (result.user.role === 'provider') navigate('/provider');
+          else if (result.user.role === 'admin') navigate('/admin');
+          else navigate('/dashboard');
+        }
+      } catch (err) {
+        triggerError();
+        setErrorMsg(err.message || 'Registration failed');
+      }
     }
-    if (loginMethod === 'otp' && !phone) {
-      triggerError();
-      return;
-    }
-    
-    // Route based on role
-    console.log(`Logging in as ${activeRole}`);
-    if (activeRole === 'rider') navigate('/rider');
-    else if (activeRole === 'provider') navigate('/provider');
-    else if (activeRole === 'admin') navigate('/admin');
-    else navigate('/dashboard');
   };
 
   const triggerError = () => {
@@ -78,8 +118,8 @@ const Auth = () => {
 
         <div className="auth-form-wrapper">
           <div className="auth-header">
-            <h1>{t('Welcome Back', 'वापसी पर स्वागत है')}</h1>
-            <p>{t('Please log in to your account.', 'कृपया अपने खाते में प्रवेश करें।')}</p>
+            <h1>{isLoginView ? t('Welcome Back', 'वापसी पर स्वागत है') : t('Create Account', 'खाता बनाएं')}</h1>
+            <p>{isLoginView ? t('Please log in to your account.', 'कृपया अपने खाते में प्रवेश करें।') : t('Sign up to explore or host services.', 'सेवाओं को खोजने या होस्ट करने के लिए साइन अप करें।')}</p>
           </div>
 
           {/* Role Selection Tabs */}
@@ -112,56 +152,60 @@ const Auth = () => {
           </div>
 
           {/* Login Method Toggle */}
-          <div className="method-toggle">
-            <button 
-              className={loginMethod === 'email' ? 'active' : ''} 
-              onClick={() => setLoginMethod('email')}
-            >
-              {t('Email', 'ईमेल')}
-            </button>
-            <button 
-              className={loginMethod === 'otp' ? 'active' : ''} 
-              onClick={() => setLoginMethod('otp')}
-            >
-              {t('Phone OTP', 'फ़ोन ओटीपी')}
-            </button>
-          </div>
+          {isLoginView && (
+            <div className="method-toggle">
+              <button 
+                className={loginMethod === 'email' ? 'active' : ''} 
+                onClick={() => setLoginMethod('email')}
+              >
+                {t('Email', 'ईमेल')}
+              </button>
+              <button 
+                className={loginMethod === 'otp' ? 'active' : ''} 
+                onClick={() => setLoginMethod('otp')}
+              >
+                {t('Phone OTP', 'फ़ोन ओटीपी')}
+              </button>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {errorMsg && (
+            <div className="auth-error-msg" style={{ 
+              background: '#fee2e2', 
+              color: '#dc2626', 
+              padding: '0.75rem 1rem', 
+              borderRadius: '8px', 
+              fontSize: '0.9rem', 
+              marginBottom: '1rem', 
+              fontWeight: '500',
+              textAlign: 'center',
+              border: '1px solid #fca5a5'
+            }}>
+              {errorMsg}
+            </div>
+          )}
 
           {/* Main Form */}
-          <form className={`auth-form ${errorAnimation ? 'form-shake' : ''}`} onSubmit={handleLogin}>
+          <form className={`auth-form ${errorAnimation ? 'form-shake' : ''}`} onSubmit={handleSubmit}>
             
-            {loginMethod === 'email' ? (
-              <>
-                <div className="input-group">
-                  <label>{t('Email Address', 'ईमेल पता')}</label>
-                  <div className="input-with-icon">
-                    <Mail size={18} className="input-icon" />
-                    <input 
-                      type="email" 
-                      placeholder="name@example.com" 
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
+            {!isLoginView && (
+              <div className="input-group">
+                <label>{t('Full Name', 'पूरा नाम')}</label>
+                <div className="input-with-icon">
+                  <User size={18} className="input-icon" />
+                  <input 
+                    type="text" 
+                    placeholder={t('Enter your full name', 'अपना पूरा नाम दर्ज करें')} 
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
-                
-                <div className="input-group">
-                  <div className="label-row">
-                    <label>{t('Password', 'पासवर्ड')}</label>
-                    <a href="#" className="forgot-link">{t('Forgot password?', 'पासवर्ड भूल गए?')}</a>
-                  </div>
-                  <div className="input-with-icon">
-                    <Lock size={18} className="input-icon" />
-                    <input 
-                      type="password" 
-                      placeholder="••••••••" 
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </div>
-                </div>
-              </>
-            ) : (
+              </div>
+            )}
+
+            {isLoginView && loginMethod === 'otp' ? (
               <div className="input-group">
                 <label>{t('Phone Number', 'फ़ोन नंबर')}</label>
                 <div className="input-with-icon">
@@ -179,15 +223,56 @@ const Auth = () => {
                   </button>
                 )}
               </div>
+            ) : (
+              <>
+                <div className="input-group">
+                  <label>{t('Email Address', 'ईमेल पता')}</label>
+                  <div className="input-with-icon">
+                    <Mail size={18} className="input-icon" />
+                    <input 
+                      type="email" 
+                      placeholder="name@example.com" 
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+                
+                <div className="input-group">
+                  <div className="label-row">
+                    <label>{t('Password', 'पासवर्ड')}</label>
+                    {isLoginView && <a href="#" className="forgot-link">{t('Forgot password?', 'पासवर्ड भूल गए?')}</a>}
+                  </div>
+                  <div className="input-with-icon">
+                    <Lock size={18} className="input-icon" />
+                    <input 
+                      type="password" 
+                      placeholder="••••••••" 
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </>
             )}
 
             <button type="submit" className="btn-primary btn-login">
-              {t('Log in', 'लॉग इन करें')} <ArrowRight size={18} />
+              {isLoginView ? t('Log in', 'लॉग इन करें') : t('Sign Up', 'साइन अप करें')} <ArrowRight size={18} />
             </button>
           </form>
 
           <p className="signup-prompt">
-            {t('Don\'t have an account?', 'खाता नहीं है?')} <a href="#">{t('Sign up for free', 'मुफ्त में साइन अप करें')}</a>
+            {isLoginView ? (
+              <>
+                {t('Don\'t have an account?', 'खाता नहीं है?')} <a href="#" onClick={(e) => { e.preventDefault(); setIsLoginView(false); setErrorMsg(''); }}>{t('Sign up for free', 'मुफ्त में साइन अप करें')}</a>
+              </>
+            ) : (
+              <>
+                {t('Already have an account?', 'पहले से ही खाता है?')} <a href="#" onClick={(e) => { e.preventDefault(); setIsLoginView(true); setErrorMsg(''); }}>{t('Log in here', 'यहाँ लॉग इन करें')}</a>
+              </>
+            )}
           </p>
         </div>
       </div>

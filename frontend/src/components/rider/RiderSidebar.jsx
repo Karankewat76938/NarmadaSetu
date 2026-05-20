@@ -1,9 +1,11 @@
 import React from 'react';
 import { Home, Calendar, IndianRupee, ShieldAlert, LogOut, Settings } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const RiderSidebar = ({ activeTab, setActiveTab }) => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const navItems = [
     { id: 'overview', label: 'Overview', icon: Home },
@@ -13,6 +15,7 @@ const RiderSidebar = ({ activeTab, setActiveTab }) => {
   ];
 
   const handleLogout = () => {
+    logout();
     navigate('/login');
   };
 

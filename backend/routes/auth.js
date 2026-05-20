@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
     }
 
     // ✅ Allow only valid roles
-    const allowedRoles = ['tourist', 'provider'];
+    const allowedRoles = ['tourist', 'provider', 'rider', 'admin'];
     if (!allowedRoles.includes(role)) {
       return res.status(400).json({ msg: 'Invalid role selected' });
     }

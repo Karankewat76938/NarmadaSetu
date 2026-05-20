@@ -11,6 +11,7 @@ const MOCK_BOOKINGS = [
     _id: "booking_1",
     date: new Date(Date.now() + 86400000 * 2), // 2 days later
     totalAmount: 800,
+    guests: 1,
     status: "confirmed",
     tourist: "mock_user_123",
     service: {
@@ -32,7 +33,7 @@ Tourist Only
 router.post('/', auth, async (req, res) => {
   // ✅ Offline Mock Check
   if (!global.dbConnected) {
-    const { serviceId, date, totalAmount } = req.body;
+    const { serviceId, date, totalAmount, guests } = req.body;
     const booking = {
       _id: "booking_" + Math.random().toString(36).substring(2, 9),
       tourist: req.user ? req.user.id : "mock_user_123",
@@ -40,10 +41,11 @@ router.post('/', auth, async (req, res) => {
         _id: serviceId || "service_1",
         title: "Sunset Shared Boat Ride",
         location: "Bhedaghat, Jabalpur",
-        price: Number(totalAmount) || 500
+        price: Number(totalAmount) / (Number(guests) || 1) || 500
       },
       date: date || new Date(),
       totalAmount: Number(totalAmount) || 500,
+      guests: Number(guests) || 1,
       status: 'pending',
       createdAt: new Date()
     };
@@ -65,13 +67,13 @@ router.post('/', auth, async (req, res) => {
       });
     }
 
-    const { serviceId, date, totalAmount } = req.body;
+    const { serviceId, date, totalAmount, guests } = req.body;
 
     // Validation
-    if (!serviceId || !date || !totalAmount) {
+    if (!serviceId || !date || !totalAmount || !guests) {
       return res.status(400).json({
         success: false,
-        message: 'All booking fields are required'
+        message: 'All booking fields are required (including guests)'
       });
     }
 
@@ -85,11 +87,21 @@ router.post('/', auth, async (req, res) => {
       });
     }
 
+    // Server-Side Price Verification
+    const expectedAmount = service.price * Number(guests);
+    if (Math.abs(expectedAmount - Number(totalAmount)) > 1) {
+      return res.status(400).json({
+        success: false,
+        message: `Calculated totalAmount (${totalAmount}) does not match server-calculated expectedAmount (${expectedAmount})`
+      });
+    }
+
     const booking = new Booking({
       tourist: req.user.id,
       service: serviceId,
       date,
       totalAmount,
+      guests: Number(guests),
       status: 'pending'
     });
 

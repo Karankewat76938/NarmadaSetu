@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -24,11 +25,12 @@ import Privacy from './pages/Privacy';
 
 function App() {
   return (
-    <Router>
-      <div className="app-container">
-        <Navbar />
-        <main>
-          <Routes>
+    <AuthProvider>
+      <Router>
+        <div className="app-container">
+          <Navbar />
+          <main>
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/listing/:id" element={<ListingDetail />} />
@@ -53,6 +55,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+  </AuthProvider>
   );
 }
 
