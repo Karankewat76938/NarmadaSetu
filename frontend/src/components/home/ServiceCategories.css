@@ -1,0 +1,52 @@
+.categories-section {
+  background-color: var(--white);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+}
+
+.category-card {
+  padding: 32px 24px;
+  border-radius: 24px;
+  background: var(--light);
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+  background: var(--white);
+  border-color: #e2e8f0;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+}
+
+.cat-icon-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .cat-icon-wrap {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.category-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+
+.category-card p {
+  color: #64748b;
+  font-size: 0.95rem;
+}

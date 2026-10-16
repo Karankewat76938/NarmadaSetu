@@ -1,0 +1,84 @@
+.favorites-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+
+.favorites-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.favorite-card {
+  min-width: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.favorite-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.fav-image-box {
+  position: relative;
+  height: 120px;
+  width: 100%;
+}
+
+.fav-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-unfav {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.fav-details {
+  padding: 12px;
+}
+
+.fav-details h4 {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fav-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.fav-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.fav-price {
+  font-weight: 700;
+  color: var(--primary);
+}
